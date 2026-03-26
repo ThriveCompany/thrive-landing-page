@@ -408,43 +408,34 @@
     }
 
     .hero-title {
-      font-size: clamp(2.05rem, 3.1vw, 3.45rem);
-      line-height: 1.03;
+      font-size: clamp(2.1rem, 3.2vw, 3.4rem);
+      line-height: 1.04;
       letter-spacing: -0.045em;
       font-weight: 760;
       margin-bottom: 16px;
       max-width: 13ch;
+
+      animation: heroFadeIn 700ms ease both;
     }
 
-    .hero-title-static {
-      display: inline;
+    @keyframes heroFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+        }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      }
     }
 
-    .typed-wrap {
-      display: inline;
-      color: #dfeaff;
-      text-shadow: 0 0 18px rgba(78, 162, 255, 0.08);
-    }
+    .highlight {
+      background: linear-gradient(90deg, #4ea2ff, #34d399);
+      background-clip: text;              /* standard */
+      -webkit-background-clip: text;      /* chrome/safari */
 
-    #typed-text {
-      color: #ffffff;
-      text-shadow: 0 0 18px rgba(78, 162, 255, 0.08);
-    }
-
-    .typed-cursor {
-      display: inline-block;
-      width: 2px;
-      height: 0.95em;
-      background: linear-gradient(180deg, #4ea2ff, #34d399);
-      margin-left: 6px;
-      vertical-align: -0.08em;
-      animation: blinkCursor 0.9s steps(1) infinite;
-      border-radius: 999px;
-    }
-
-    @keyframes blinkCursor {
-      0%, 49% { opacity: 1; }
-      50%, 100% { opacity: 0; }
+      color: transparent;                 /* fallback */
+      -webkit-text-fill-color: transparent;
     }
 
     .hero p {
@@ -1958,13 +1949,9 @@
       <div class="container">
         <div class="hero-grid">
           <div class="hero-copy fade-up">
-            <span class="eyebrow">Business software built for clarity</span>
+            <span class="eyebrow">Business software built for your growth</span>
             <h1 class="hero-title">
-              <span class="hero-title-static">Run your business with </span>
-              <span class="typed-wrap">
-                <span id="typed-text"></span>
-                <span class="typed-cursor"></span>
-              </span>
+              Run your business with <span class="highlight">clarity</span>, control, and smarter decisions.
             </h1>
             <p>
               Thrive helps business owners manage sales, inventory, customers, tasks, and finances
@@ -1977,7 +1964,7 @@
             </div>
 
             <div class="hero-note fade-up delay-2">
-              Designed for growing businesses that want better visibility without complicated software.
+              Designed for business owners who want real control and fast growth, without the complexity of traditional software.
             </div>
 
             <div class="hero-metrics fade-up delay-3">
@@ -2709,44 +2696,6 @@
   </footer>
 
   <script>
-    const typedTarget = document.getElementById("typed-text");
-
-    if (typedTarget) {
-      const phrases = [
-        "clarity.",
-        "control.",
-        "confidence.",
-        "growth."
-      ];
-
-      let phraseIndex = 0;
-      let charIndex = 0;
-      let isDeleting = false;
-
-      function typeHeadline() {
-        const currentPhrase = phrases[phraseIndex];
-        typedTarget.textContent = currentPhrase.slice(0, charIndex);
-
-        let speed = isDeleting ? 45 : 75;
-
-        if (!isDeleting && charIndex < currentPhrase.length) {
-          charIndex++;
-        } else if (isDeleting && charIndex > 0) {
-          charIndex--;
-        } else if (!isDeleting && charIndex === currentPhrase.length) {
-          speed = 1400;
-          isDeleting = true;
-        } else {
-          isDeleting = false;
-          phraseIndex = (phraseIndex + 1) % phrases.length;
-        }
-
-        setTimeout(typeHeadline, speed);
-      }
-
-      typeHeadline();
-    }
-
     const menuToggle = document.querySelector(".menu-toggle");
     const mobileMenu = document.querySelector(".mobile-menu");
 
